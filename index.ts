@@ -10,6 +10,7 @@ require("dotenv").config();
 const FLASHBOTS_AUTH_KEY = process.env.flashSigner;
 
 const addresses = {
+  uniswapRouter: "0xC532a74256D3Db42D0Bf7a0400fEFDbad7694008",
   contract: "0xb79abF45Ae81456104b3b71f67C967da23093E9e",
   token_contract: "0x94Af502a5583d37a9da1b738A19Cc8D02fA4D402",
 };
@@ -55,7 +56,7 @@ const TokenContract = new ethers.Contract(
  * Send Bundle
  *
  * */
-async function main(maxtx: number, eth: number) {
+async function main(mintx: number, maxtx: number, eth: number) {
   console.log("started")
   const authSigner = FLASHBOTS_AUTH_KEY ? new Wallet(FLASHBOTS_AUTH_KEY) : Wallet.createRandom()
   const flashbotsProvider = await FlashbotsBundleProvider.create(provider, authSigner, FLASHBOTS_EP)
@@ -73,11 +74,13 @@ async function main(maxtx: number, eth: number) {
   const opentx = await TokenContract.populateTransaction.openTrading();
 
   const decimals = await TokenContract.decimals();
+  const min = ethers.utils.parseUnits(mintx.toString(), decimals);
   const max = ethers.utils.parseUnits(maxtx.toString(), decimals);
   const fee = ethers.utils.parseUnits((0.005).toString(), "ether").toString();
   const totalETH = ethers.utils.parseUnits(eth.toString(), "ether").toString();
 
   const swaptx = await BundlerContract.populateTransaction.swapAndDistribute(
+    min,
     max,
     fee,
     addresses.token_contract,
@@ -140,12 +143,13 @@ async function batch(amount: number) {
 
 program
   .command("bundle")
+  .requiredOption("-l, --mintx <number>", "max tx amount")
   .requiredOption("-m, --maxtx <number>", "max tx amount")
   .requiredOption("-e, --eth <number>", "max eth amount")
   .action(async (directory: any, cmd: any) => {
-    const {maxtx, eth } = cmd.opts();
+    const {mintx, maxtx, eth } = cmd.opts();
     try {
-        await main(maxtx, eth);
+        await main(mintx, maxtx, eth);
     } catch (err) {
       console.log(err);
     }

@@ -23,10 +23,11 @@ https://sepolia.etherscan.io/tx/0xaade886a70b91a18e741a722f0f4ced6155cf9d5e449e3
 	run the 'npm install' on terminal
 
 1. Bundle
+	-l min tx
 	-m max tx
 	-e est eth
 
-	ts-nodenode index.ts bundle -a <tokenaddress> -m <maxtx> -e <eth>
+	ts-nodenode index.ts bundle -l <mintx> -m <maxtx> -e <eth>
 
 2. Send eth batch
    -a amount of eth

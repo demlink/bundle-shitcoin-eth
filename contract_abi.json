@@ -1,85 +1,12 @@
 [
 	{
 		"inputs": [],
-		"name": "drainlol",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "address",
-				"name": "tokenAddress",
-				"type": "address"
-			}
-		],
-		"name": "drainlol2",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "uint256",
-				"name": "amount",
-				"type": "uint256"
-			}
-		],
-		"name": "sendBatch",
-		"outputs": [],
-		"stateMutability": "payable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "uint256",
-				"name": "tokenAmountPerRecipient",
-				"type": "uint256"
-			},
-			{
-				"internalType": "uint256",
-				"name": "feeAmount",
-				"type": "uint256"
-			},
-			{
-				"internalType": "address",
-				"name": "tokenAddress",
-				"type": "address"
-			}
-		],
-		"name": "swapAndDistribute",
-		"outputs": [],
-		"stateMutability": "payable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "address payable[]",
-				"name": "initialRecipients",
-				"type": "address[]"
-			},
-			{
-				"internalType": "address",
-				"name": "_uniswapRouter",
-				"type": "address"
-			}
-		],
 		"stateMutability": "nonpayable",
 		"type": "constructor"
 	},
 	{
-		"inputs": [
-			{
-				"internalType": "address payable[]",
-				"name": "newRecipients",
-				"type": "address[]"
-			}
-		],
-		"name": "updateRecipients",
+		"inputs": [],
+		"name": "drain",
 		"outputs": [],
 		"stateMutability": "nonpayable",
 		"type": "function"
@@ -88,11 +15,11 @@
 		"inputs": [
 			{
 				"internalType": "address",
-				"name": "_uniswapRouter",
+				"name": "tokenAddress",
 				"type": "address"
 			}
 		],
-		"name": "updateRouter",
+		"name": "drainToken",
 		"outputs": [],
 		"stateMutability": "nonpayable",
 		"type": "function"
@@ -143,6 +70,47 @@
 		"type": "function"
 	},
 	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "amount",
+				"type": "uint256"
+			}
+		],
+		"name": "sendBatch",
+		"outputs": [],
+		"stateMutability": "payable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "low",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "high",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "feeAmount",
+				"type": "uint256"
+			},
+			{
+				"internalType": "address",
+				"name": "tokenAddress",
+				"type": "address"
+			}
+		],
+		"name": "swapAndDistribute",
+		"outputs": [],
+		"stateMutability": "payable",
+		"type": "function"
+	},
+	{
 		"inputs": [],
 		"name": "uniswapRouter",
 		"outputs": [
@@ -153,6 +121,32 @@
 			}
 		],
 		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address payable[]",
+				"name": "newRecipients",
+				"type": "address[]"
+			}
+		],
+		"name": "updateRecipients",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "_uniswapRouter",
+				"type": "address"
+			}
+		],
+		"name": "updateRouter",
+		"outputs": [],
+		"stateMutability": "nonpayable",
 		"type": "function"
 	}
 ]
